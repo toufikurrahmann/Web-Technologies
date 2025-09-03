@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Weave - Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; 
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #4B0082; 
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    header img {
+      height: 120px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    fieldset {
+      border: 2px solid #4B0082;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    legend {
+      padding: 0 10px;
+      color: #4B0082;
+      font-weight: bold;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      background: #4B0082;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #360061;
+    }
+    .links {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .links a {
+      color: #4B0082;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="swlogo.png" alt="Story Weave Logo">
+    <h1 id="welcomeMsg">Profile</h1>
+  </header>
+
+  <div class="container">
+    <fieldset>
+      <legend>Profile Information</legend>
+      <p><b>Name:</b> <span id="profileName">John Doe</span></p>
+      <p><b>Email:</b> <span id="profileEmail">john@example.com</span></p>
+      
+      <!-- Update Profile -->
+      <form id="updateProfileForm">
+        <h3>Update Profile</h3>
+        <input type="text" id="newName" placeholder="Enter new name">
+        <input type="email" id="newEmail" placeholder="Enter new email">
+        <p class="error" id="updateError"></p>
+        <button type="submit">Update Profile</button>
+      </form>
+
+      <!-- Change Password -->
+      <form id="changePasswordForm">
+        <h3>Change Password</h3>
+        <input type="password" id="newPass" placeholder="New Password">
+        <input type="password" id="confirmPass" placeholder="Confirm Password">
+        <p class="error" id="passwordError"></p>
+        <button type="submit">Change Password</button>
+      </form>
+    </fieldset>
+
+    <div class="links">
+      <a href="story.html">Stories</a> | 
+      <a href="logout.html">Logout</a>
+    </div>
+  </div>
+
+<script>
+  // Show name/email after login
+  document.addEventListener("DOMContentLoaded", function () {
+    let storedName = localStorage.getItem("name");
+    let storedEmail = localStorage.getItem("email");
+
+    if (storedName && storedEmail) {
+      document.getElementById("profileName").textContent = storedName;
+      document.getElementById("profileEmail").textContent = storedEmail;
+      document.getElementById("welcomeMsg").textContent = "Welcome, " + storedName;
+    }
+  });
+
+  // Update Profile Validation
+  document.getElementById("updateProfileForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let name = document.getElementById("newName").value.trim();
+    let email = document.getElementById("newEmail").value.trim();
+    let error = document.getElementById("updateError");
+
+    if (!name || !email) {
+      error.textContent = "Both fields are required!";
+      return;
+    }
+    if (!/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(email)) {
+      error.textContent = "Enter a valid email!";
+      return;
+    }
+    error.textContent = "";
+
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileEmail").textContent = email;
+    document.getElementById("welcomeMsg").textContent = "Welcome, " + name;
+
+    alert("Profile updated successfully!");
+  });
+
+  // Change Password Validation
+  document.getElementById("changePasswordForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let pass = document.getElementById("newPass").value;
+    let confirmPass = document.getElementById("confirmPass").value;
+    let error = document.getElementById("passwordError");
+
+    if (pass.length < 6) {
+      error.textContent = "Password must be at least 6 characters!";
+      return;
+    }
+    if (pass !== confirmPass) {
+      error.textContent = "Passwords do not match!";
+      return;
+    }
+    error.textContent = "";
+    alert("Password changed successfully!");
+  });
+</script>
+</body>
+</html>

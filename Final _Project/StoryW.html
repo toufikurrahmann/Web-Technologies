@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Weave - Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; 
+      padding: 0;
+      background: #fcfcfc;
+      color: #ffffff;
+    }
+    header {
+      background: #4B0082;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header img {
+      height: 200px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    fieldset {
+      border: 2px solid #4B0082;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    legend {
+      padding: 0 10px;
+      color: #4B0082;
+      font-weight: bold;
+    }
+    input {
+      width: 92%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: -6px;
+      margin-bottom: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      background: #4B0082;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #360061;
+    }
+    .links {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .links a {
+      color: #4B0082;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="swlogo.png" alt="Story Weave Logo">
+    <h1>Story Weave - Co-Author</h1>
+  </header>
+
+  <div class="container">
+    <form id="loginForm" action="profile.html">
+      <fieldset>
+        <legend>Login</legend>
+        <input type="email" id="email" placeholder="Email">
+        <div id="emailError" class="error"></div>
+
+        <input type="password" id="password" placeholder="Password">
+        <div id="passwordError" class="error"></div>
+
+        <button type="submit">Login</button>
+      </fieldset>
+    </form>
+    <div class="links">
+      <p><a href="register.html">Register</a> | 
+         <a href="forgot-password.html">Forgot Password?</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      let valid = true;
+
+      // Email validation
+      const email = document.getElementById("email").value.trim();
+      const emailError = document.getElementById("emailError");
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (email === "") {
+        emailError.textContent = "Email is required.";
+        valid = false;
+      } else if (!email.match(emailPattern)) {
+        emailError.textContent = "Enter a valid email address.";
+        valid = false;
+      } else {
+        emailError.textContent = "";
+      }
+
+      // Password validation
+      const password = document.getElementById("password").value.trim();
+      const passwordError = document.getElementById("passwordError");
+      if (password === "") {
+        passwordError.textContent = "Password is required.";
+        valid = false;
+      } else if (password.length < 6) {
+        passwordError.textContent = "Password must be at least 6 characters.";
+        valid = false;
+      } else {
+        passwordError.textContent = "";
+      }
+
+      if (!valid) {
+        event.preventDefault(); // stop form submission
+      }
+    });
+  </script>
+</body>
+</html>

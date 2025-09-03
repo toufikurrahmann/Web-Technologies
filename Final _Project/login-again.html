@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Again - Story Weave</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; 
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #4B0082; 
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    header img {
+      height: 60px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    fieldset {
+      border: 2px solid #4B0082;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    legend {
+      padding: 0 10px;
+      color: #4B0082;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      background: #4B0082;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #360061;
+    }
+    .note {
+      margin-bottom: 15px;
+      color: red;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="swlogo.png" alt="Story Weave Logo">
+    <h1>Story Weave - Co-Author</h1>
+  </header>
+
+  <div class="container">
+    <div class="note">You have been logged out. Please log in again.</div>
+    <form action="profile.html">
+      <fieldset>
+        <legend>Login Again</legend>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </fieldset>
+    </form>
+  </div>
+</body>
+</html>
