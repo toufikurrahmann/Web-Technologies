@@ -14,6 +14,7 @@
   button:hover { background:#360061; }
   .links { text-align:center; margin-top:10px; }
   .links a { color:#4B0082; text-decoration:none; }
+  .error { color:red; font-size:13px; margin-top:-5px; margin-bottom:5px; }
 </style>
 </head>
 <body>
@@ -23,14 +24,53 @@
 </header>
 
 <div class="container">
-  <form>
-    <input type="text" placeholder="Story Title" required>
-    <textarea rows="10" placeholder="Write your chapter here..." required></textarea>
+  <form id="chapterForm">
+    <input type="text" id="title" placeholder="Story Title" >
+    <p class="error" id="titleError"></p>
+
+    <textarea id="content" rows="10" placeholder="Write your chapter here..." ></textarea>
+    <p class="error" id="contentError"></p>
+
     <button type="submit">Submit Chapter</button>
   </form>
   <div class="links">
     <a href="profile.html">Back to Profile</a>
   </div>
 </div>
+
+<script>
+  document.getElementById("chapterForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let valid = true;
+
+ 
+    document.querySelectorAll(".error").forEach(el => el.textContent = "");
+
+    const title = document.getElementById("title").value.trim();
+    const content = document.getElementById("content").value.trim();
+
+    if(title === ""){
+      document.getElementById("titleError").textContent = "Title is required.";
+      valid = false;
+    } else if(title.length > 100){
+      document.getElementById("titleError").textContent = "Title cannot exceed 100 characters.";
+      valid = false;
+    }
+
+    if(content === ""){
+      document.getElementById("contentError").textContent = "Chapter content is required.";
+      valid = false;
+    } else if(content.length > 2000){
+      document.getElementById("contentError").textContent = "Chapter cannot exceed 2000 characters.";
+      valid = false;
+    }
+
+    if(valid){
+      alert("Chapter submitted successfully!");
+      this.reset();
+      window.location.href = "profile.html"; 
+    }
+  });
+</script>
 </body>
 </html>

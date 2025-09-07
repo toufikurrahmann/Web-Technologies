@@ -109,7 +109,7 @@
     document.getElementById("loginForm").addEventListener("submit", function(event) {
       let valid = true;
 
-      // Email validation
+     
       const email = document.getElementById("email").value.trim();
       const emailError = document.getElementById("emailError");
       const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
@@ -123,7 +123,7 @@
         emailError.textContent = "";
       }
 
-      // Password validation
+      
       const password = document.getElementById("password").value.trim();
       const passwordError = document.getElementById("passwordError");
       if (password === "") {
@@ -137,7 +137,7 @@
       }
 
       if (!valid) {
-        event.preventDefault(); // stop form submission
+        event.preventDefault(); 
       }
     });
   </script>
